@@ -330,6 +330,7 @@ The current tests focus on the decision logic that determines whether an executi
 ### Backend Lessons
 
 - A reverse proxy needs careful boundaries around what it captures. Truncating telemetry keeps the verification service safe while preserving enough context for scoring.
+- The request path and billing path should be loosely coupled so agents do not wait on slow verification or ledger retries.
 - Token storage should avoid raw secrets. Hashing bearer tokens before persistence keeps leaked database rows from becoming live credentials.
 - Synchronous SDKs inside async services can block the event loop, so Supabase calls are pushed through `asyncio.to_thread`.
 - Billing writes need to be atomic. Moving debit and transaction insertion into a Postgres function avoids inconsistent wallet and ledger state.
