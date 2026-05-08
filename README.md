@@ -90,6 +90,8 @@ The services are intentionally split:
 - **Supabase Python client** for session and account reads
 - **Docker** for containerized deployment
 
+The gateway is the enforcement layer: it decides whether a request is allowed to leave the system, captures the minimum telemetry needed for verification, and protects the rest of the stack from obvious abuse.
+
 ### Verification Engine
 
 - **Python**
