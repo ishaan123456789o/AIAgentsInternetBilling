@@ -68,6 +68,8 @@ flowchart TD
     C --> J
 ```
 
+The architecture is event-oriented: the gateway handles user-facing latency, while verification and ledger writes run behind the request path so the agent can receive the upstream response without waiting for billing work to finish.
+
 The services are intentionally split:
 
 - `gateway/` owns authentication, proxying, request capture, rate limits, and loop blocking.
