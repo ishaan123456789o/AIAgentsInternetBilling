@@ -378,6 +378,7 @@ Production hardening would include:
 ## Security Notes
 
 - Do not commit `.env` files or service-role keys.
+- Treat generated agent tokens like passwords because the raw token is only shown once.
 - The dashboard should only expose public Supabase anon keys to the browser.
 - Backend routes that use `SUPABASE_SERVICE_KEY` must stay server-side.
 - `INTERNAL_SECRET` should be set in deployed environments so only the gateway can call the verification engine.
