@@ -1,5 +1,7 @@
 # AI Agents Internet Billing
 
+Outcome-priced internet access for autonomous AI agents.
+
 AI Agents Internet Billing is an outcome-verified billing platform for AI agents that consume paid web data and APIs. Instead of charging an agent simply because it made an HTTP request, the system routes the request through a gateway, verifies that the response was useful, coherent, and successful, and only then writes a micro-transaction to a ledger.
 
 The project is built as a working prototype for a future internet where agents browse, query, scrape, and call APIs on behalf of users. Data providers need a way to get paid, agent developers need spend controls, and both sides need confidence that billing reflects real value instead of failed requests, bot blocks, empty responses, or hallucinated content.
