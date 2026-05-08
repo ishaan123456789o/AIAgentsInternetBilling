@@ -100,6 +100,8 @@ The gateway is the enforcement layer: it decides whether a request is allowed to
 - **Heuristic fallback evaluators** for local or no-key operation
 - **pytest** for evaluator tests
 
+The verification engine is deliberately replaceable. The current implementation can use Gemini for structured grading, but the evaluator interface is simple enough to swap in custom classifiers, embedding similarity, or provider-specific proof checks.
+
 ### Database and Billing Ledger
 
 - **Supabase**
