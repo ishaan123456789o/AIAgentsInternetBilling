@@ -37,6 +37,7 @@ This project explores a billing primitive for that environment:
 
 ## Core Features
 
+- **Outcome-based charging** so developers are billed for verified useful responses rather than every attempted request.
 - **FastAPI reverse proxy** for agent HTTP traffic.
 - **Bearer-token agent sessions** with SHA-256 hashed token storage.
 - **Supabase authentication and ledger storage** for developers, sessions, providers, endpoints, and transactions.
