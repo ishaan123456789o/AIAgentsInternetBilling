@@ -361,6 +361,8 @@ This is a prototype/MVP, not a production billing network yet. The core path is 
 - token generation
 - wallet top-up flow
 
+The most important missing production piece is calibration: real Proof-of-Execution billing would need labeled examples from real agent traffic so the verifier can be tuned for false positives and false negatives.
+
 Production hardening would include:
 
 - Redis or database-backed distributed rate limits
