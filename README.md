@@ -111,6 +111,8 @@ The verification engine is deliberately replaceable. The current implementation 
 - **Partitioned `micro_transactions` ledger table**
 - **JSONB proof metadata**
 
+The database is both the account system and the source of truth for billing. That is why wallet debits and transaction inserts happen together inside Postgres instead of being coordinated only in application code.
+
 ### Dashboard
 
 - **Next.js**
