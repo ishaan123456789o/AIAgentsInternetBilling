@@ -302,6 +302,8 @@ From the repository root, this also works if dependencies are installed:
 pytest verification/tests/
 ```
 
+The current tests focus on the decision logic that determines whether an execution should pass or fail. That is the highest-risk part of the prototype because it controls whether the ledger creates a charge.
+
 ## Important Environment Variables
 
 | Variable | Used By | Purpose |
