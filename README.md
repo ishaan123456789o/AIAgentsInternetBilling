@@ -229,6 +229,8 @@ The Supabase schema includes:
 
 The ledger is partitioned by `created_at` so high-volume transaction history can scale by month. Row-Level Security lets developers read only their own sessions and transactions, while backend services use the service role for trusted writes.
 
+The schema is also designed around auditability: each transaction keeps the amount, provider share, platform share, response status, latency, request hash, verification score, and proof metadata that explain why the charge happened.
+
 ## Running Locally
 
 Create your environment file:
