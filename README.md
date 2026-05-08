@@ -122,6 +122,8 @@ The database is both the account system and the source of truth for billing. Tha
 - **Supabase SSR auth**
 - **Stripe Checkout and webhooks**
 
+The dashboard turns the backend prototype into a usable product surface: developers can sign in, create agent tokens, add wallet credits, and inspect the transactions produced by their agents.
+
 ### Local Infrastructure
 
 - **Docker Compose**
