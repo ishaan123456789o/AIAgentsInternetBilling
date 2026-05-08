@@ -1,0 +1,39 @@
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - VERIFICATION_ENGINE_URL=http://verification:9000
+      - LOOP_STRIKE_THRESHOLD=3
+      - INTERNAL_SECRET=${INTERNAL_SECRET}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+    depends_on:
+      verification:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  verification:
+    build: ./verification
+    ports:
+      - "9000:9000"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - INTERNAL_SECRET=${INTERNAL_SECRET}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
