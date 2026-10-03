@@ -147,7 +147,14 @@ async def evaluate_bundle(bundle: TelemetryBundle) -> VerificationResult:
             flags.append(flag)
 
     composite = sum(scores[k] * WEIGHTS[k] for k in WEIGHTS)
-    passed = composite >= COMPOSITE_PASS_THRESHOLD
+    # A weighted score cannot compensate for a failed request, empty response,
+    # or detected refusal. Keep the scores and flags for billing diagnostics.
+    passed = (
+        scores["http_success"] == 1.0
+        and scores["non_empty_body"] == 1.0
+        and "hallucination_detected" not in flags
+        and composite >= COMPOSITE_PASS_THRESHOLD
+    )
 
     return VerificationResult(
         request_id=bundle.request_id,

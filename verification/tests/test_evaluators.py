@@ -83,6 +83,18 @@ class TestHallucinationDetector:
 
 
 class TestCompositePipeline:
+    @pytest.mark.parametrize("status", [301, 400, 404, 429, 500, 503])
+    def test_failed_http_status_cannot_pass_with_good_content(self, status):
+        result = asyncio.run(evaluate_bundle(_bundle(response_status=status)))
+        assert result.proof_of_execution is False
+        assert result.individual_scores["http_success"] == 0.0
+
+    @pytest.mark.parametrize("body", ["", "   ", "{}"])
+    def test_empty_or_trivial_body_cannot_pass(self, body):
+        result = asyncio.run(evaluate_bundle(_bundle(response_body=body)))
+        assert result.proof_of_execution is False
+        assert "empty_response" in result.flags
+
     def test_clean_response_passes(self):
         result = asyncio.run(evaluate_bundle(_bundle()))
         assert result.proof_of_execution is True
